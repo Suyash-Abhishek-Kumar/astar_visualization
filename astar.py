@@ -27,6 +27,7 @@ class AStar:
         self.open_list = []  # List of cells to be evaluated
         self.closed_list = []  # List of cells already evaluated
         self.cell_details = []  # Details of each cell
+        self.log = {} # Dictionary to store the path for logging
 
     # Check if given point is in the grid
     def is_valid(self, row, col): return (row >= 0) and (row < self.ROW) and (col >= 0) and (col < self.COL)
@@ -47,17 +48,17 @@ class AStar:
             return math.sqrt((row - self.dest[0]) ** 2 + (col - self.dest[1]) ** 2)
         
     # Trace the path from source to destination
-    def trace_path(self, cell_details):
+    def trace_path(self):
         if not self.imported: print("The Path is ")
         path = []
         row = self.dest[0]
         col = self.dest[1]
 
         # Trace the path from destination to source using parent cells
-        while not (cell_details[row][col].parent_i == row and cell_details[row][col].parent_j == col):
+        while not (self.cell_details[row][col].parent_i == row and self.cell_details[row][col].parent_j == col):
             path.append((col, row))
-            temp_row = cell_details[row][col].parent_i
-            temp_col = cell_details[row][col].parent_j
+            temp_row = self.cell_details[row][col].parent_i
+            temp_col = self.cell_details[row][col].parent_j
             row = temp_row
             col = temp_col
 
@@ -70,6 +71,7 @@ class AStar:
         if not self.imported:
             for i in path: print("->", i, end=" ")
             print()
+        else: return [(j, i) for i, j in path]
     
     # Implement the A* search algorithm
     def a_star_search(self):
