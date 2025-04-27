@@ -18,6 +18,8 @@ class AStar:
     def __init__(self, grid, start, dest, heuristic_type='Euclidean', imported=False):
         self.imported = imported
         self.grid = grid
+        self.ROW = len(grid) if imported else ROW
+        self.COL = len(grid[0]) if imported else COL
         self.src = start
         self.dest = dest
         self.heuristic_type = heuristic_type
@@ -27,7 +29,7 @@ class AStar:
         self.cell_details = []  # Details of each cell
 
     # Check if given point is in the grid
-    def is_valid(self, row, col): return (row >= 0) and (row < ROW) and (col >= 0) and (col < COL)
+    def is_valid(self, row, col): return (row >= 0) and (row < self.ROW) and (col >= 0) and (col < self.COL)
 
     # check if the given node is unblocked
     def is_unblocked(self, row, col): return self.grid[row][col] == 1
@@ -93,9 +95,9 @@ class AStar:
             else: return 0
 
         # Initialize the closed list (visited cells)
-        self.closed_list = [[False for _ in range(COL)] for _ in range(ROW)]
+        self.closed_list = [[False for _ in range(self.COL)] for _ in range(self.ROW)]
         # Initialize the details of each cell
-        self.cell_details = [[Cell() for _ in range(COL)] for _ in range(ROW)]
+        self.cell_details = [[Cell() for _ in range(self.COL)] for _ in range(self.ROW)]
 
         # Initialize the start cell details
         i = self.src[0]
