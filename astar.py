@@ -38,10 +38,10 @@ class AStar:
     def is_destination(self, row, col): return row == self.dest[0] and col == self.dest[1]
 
     # Calculate the heuristic value of a cell (Euclidean/Manhattan/Diagonal distance to destination)
-    def calculate_h_value(self, row, col, type = 'Euclidean'):
-        if type == 'Manhattan':
+    def calculate_h_value(self, row, col):
+        if self.heuristic_type == 'Manhattan':
             return abs(row - self.dest[0]) + abs(col - self.dest[1])
-        elif type == 'Diagonal':
+        elif self.heuristic_type == 'Diagonal':
             return ((row - self.dest[0]) + (col - self.dest[1])) + (ROOT2 - 2 * 1) * min((row - self.dest[0]), (col - self.dest[1]))
         else:  # Default to Euclidean
             return math.sqrt((row - self.dest[0]) ** 2 + (col - self.dest[1]) ** 2)
@@ -121,7 +121,10 @@ class AStar:
             self.closed_list[i][j] = True
 
             # For each direction, check the successors
-            directions = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+            if self.heuristic_type == 'Manhattan':
+                directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+            else:
+                directions = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
             for dir in directions:
                 new_i = i + dir[0]
                 new_j = j + dir[1]
@@ -144,7 +147,7 @@ class AStar:
                     else:
                         # Calculate the new f, g, and h values
                         g_new = self.cell_details[i][j].g + 1.0
-                        h_new = self.calculate_h_value(new_i, new_j, self.dest)
+                        h_new = self.calculate_h_value(new_i, new_j)
                         f_new = g_new + h_new
 
                         # If the cell is not in the open list or the new f value is smaller
@@ -184,7 +187,7 @@ def main():
     dest = [0, 0]
 
     # Run the A* search algorithm
-    astar = AStar(grid, src, dest, heuristic_type='Euclidean')
+    astar = AStar(grid, src, dest, heuristic_type='Diagonal')
     astar.a_star_search()
 
 if __name__ == "__main__":
