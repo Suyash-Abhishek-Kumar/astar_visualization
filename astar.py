@@ -141,7 +141,7 @@ class AStar:
                         if not self.imported:
                             print("The destination cell is found")
                             # Trace and print the path from source to destination
-                            self.trace_path(self.cell_details)
+                            self.trace_path()
                             self.found_dest = True
                             return
                         else:
@@ -189,7 +189,7 @@ def main():
     dest = [0, 0]
 
     # Run the A* search algorithm
-    astar = AStar(grid, src, dest, heuristic_type='Diagonal')
+    astar = AStar(grid, src, dest, heuristic_type='Manhattan')
     astar.a_star_search()
 
 if __name__ == "__main__":
