@@ -10,7 +10,7 @@ Perfect for students, hobbyists, and anyone curious about how A* works under the
 ## ✨ Features
 
 - **Interactive Visualization**: Set start and end points, draw walls, and watch the algorithm find the shortest path.
-- **Modular A* Algorithm**: `astar.py` can be imported as a module or run standalone.
+- **Modular A-star Algorithm**: `astar.py` can be imported as a module or run standalone.
 - **Custom Buttons**: Easy controls to start, reset, and customize the grid.
 - **Polished Visuals**: Smooth animations, custom colors, fonts, and an application icon.
 - **Educational Tool**: Perfect for learning or teaching A* pathfinding.
@@ -19,7 +19,12 @@ Perfect for students, hobbyists, and anyone curious about how A* works under the
 
 ## 📸 Screenshots
 
-*(Add screenshots here if possible for a visual preview!)*
+<img src="https://github.com/user-attachments/assets/a0352cfb-9e21-4859-baaa-4fe0431ebdde" alt="screenshot3" width="250"/>
+<img src="https://github.com/user-attachments/assets/5f7678ba-7a50-4a10-a9cf-7b844a0e2f37" alt="screenshot1" width="250"/>
+<img src="https://github.com/user-attachments/assets/57b153e0-de09-4efb-9ce7-51284feec6ac" alt="screenshot2" width="250"/>
+
+
+
 
 ---
 
